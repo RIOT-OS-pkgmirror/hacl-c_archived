@@ -26,31 +26,6 @@
 #define __Hacl_Poly1305_64_H
 
 
-
-
-
-typedef uint64_t Hacl_Bignum_Constants_limb;
-
-typedef FStar_UInt128_t Hacl_Bignum_Constants_wide;
-
-typedef FStar_UInt128_t Hacl_Bignum_Wide_t;
-
-typedef uint64_t Hacl_Bignum_Limb_t;
-
-typedef void *Hacl_Impl_Poly1305_64_State_log_t;
-
-typedef uint8_t *Hacl_Impl_Poly1305_64_State_uint8_p;
-
-typedef uint64_t *Hacl_Impl_Poly1305_64_State_bigint;
-
-typedef void *Hacl_Impl_Poly1305_64_State_seqelem;
-
-typedef uint64_t *Hacl_Impl_Poly1305_64_State_elemB;
-
-typedef uint8_t *Hacl_Impl_Poly1305_64_State_wordB;
-
-typedef uint8_t *Hacl_Impl_Poly1305_64_State_wordB_16;
-
 typedef struct 
 {
   uint64_t *r;
@@ -58,21 +33,6 @@ typedef struct
 }
 Hacl_Impl_Poly1305_64_State_poly1305_state;
 
-typedef void *Hacl_Impl_Poly1305_64_log_t;
-
-typedef uint64_t *Hacl_Impl_Poly1305_64_bigint;
-
-typedef uint8_t *Hacl_Impl_Poly1305_64_uint8_p;
-
-typedef uint64_t *Hacl_Impl_Poly1305_64_elemB;
-
-typedef uint8_t *Hacl_Impl_Poly1305_64_wordB;
-
-typedef uint8_t *Hacl_Impl_Poly1305_64_wordB_16;
-
-typedef uint8_t *Hacl_Poly1305_64_uint8_p;
-
-typedef uint64_t Hacl_Poly1305_64_uint64_t;
 
 typedef uint8_t *Hacl_Poly1305_64_key;
 
