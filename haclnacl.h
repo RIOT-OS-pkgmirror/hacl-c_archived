@@ -1,5 +1,12 @@
 #include <inttypes.h>
 
+#define crypto_box_PUBLICKEYBYTES 32
+#define crypto_box_SECRETKEYBYTES 32
+#define crypto_box_ZEROBYTES 32
+#define crypto_box_ZEROBYTES 32
+#define crypto_box_NONCEBYTES 24
+
+
 /* NaCl-like API */
 int crypto_onetimeauth(uint8_t *output, uint8_t *input, uint64_t input_len, uint8_t *key);
 
