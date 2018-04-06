@@ -36,7 +36,7 @@ int crypto_sign_secret_to_public(uint8_t *pk, uint8_t *sk);
 
 int crypto_box(uint8_t *cipher, uint8_t *message, uint64_t msg_len, uint8_t *nonce,  uint8_t *pk, uint8_t *sk);
 
-int crypto_box_open(uint8_t *msg, uint8_t *cipher, uint64_t cipher_len, uint8_t *nonce, uint8_t *pk, uint8_t *sk);
+int crypto_box_open(uint8_t *msg, const uint8_t *cipher, uint64_t cipher_len, const uint8_t *nonce, const uint8_t *pk, const uint8_t *sk);
 
 int crypto_box_afternm(uint8_t *cipher, uint8_t *msg, uint64_t msg_len, uint8_t *nonce, uint8_t *key);
 
