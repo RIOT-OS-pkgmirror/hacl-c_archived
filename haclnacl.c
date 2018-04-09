@@ -71,16 +71,16 @@ void sha2_512_hash(uint8_t *hash, uint8_t *input, uint32_t len){
 
 /* NaCl-like API */
 
-int crypto_auth(unsigned char *output, const unsigned char *input, unsigned long long input_len,const unsigned char *key){
-  Hacl_HMAC_SHA2_256_hmac_core(output, key, input, input_len);
+int crypto_auth(unsigned char *output, const unsigned char *input, unsigned long long input_len, const unsigned char *key){
+  Hacl_HMAC_SHA2_256_hmac_core(output, (unsigned char *)key, (unsigned char *)input, input_len);
   return 0;
 }
 
 int crypto_auth_verify(const unsigned char *tag, const unsigned char *input, unsigned long long input_len, const unsigned char *key){
   uint8_t recomputed_tag[32], tmp = 0xff;
-  Hacl_HMAC_SHA2_256_hmac_core(recomputed_tag, key, input, input_len);
+  Hacl_HMAC_SHA2_256_hmac_core(recomputed_tag, (unsigned char *)key, (unsigned char *)input, input_len);
   for (int i = 0; i < 32; i++){
-    tmp = tmp & FStar_UInt8_eq_mask(tag[i], recomputed_tag[i]);
+    tmp = tmp & FStar_UInt8_eq_mask((unsigned char)tag[i], recomputed_tag[i]);
   }
   tmp >>= 7;
   return (int)tmp - 1;
@@ -171,7 +171,7 @@ int crypto_onetimeauth_verify(const unsigned char *auth, const unsigned char *in
   uint8_t tag[16], tmp = 0xff;
   poly1305_onetimeauth(tag, (unsigned char *)input, input_len, (unsigned char *)key);
   for (int i = 0; i < 16; i++){
-    tmp = tmp & FStar_UInt8_eq_mask(tag[i], (unsigned char *)auth[i]);
+    tmp = tmp & FStar_UInt8_eq_mask(tag[i], (unsigned char)auth[i]);
   }
   tmp >>= 7;
   return (int)tmp - 1;
