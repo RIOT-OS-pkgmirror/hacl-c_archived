@@ -3,6 +3,7 @@
 #include "Hacl_Curve25519.h"
 #include "Hacl_Chacha20.h"
 #include "Hacl_Salsa20.h"
+#include "Hacl_HMAC_SHA2_256.h"
 #define Hacl_Impl_Poly1305_64_State_poly1305_state Hacl_Impl_Poly1305_64_State_poly1305_state_poly
 #include "Hacl_Poly1305_64.h"
 #undef Hacl_Impl_Poly1305_64_State_poly1305_state
@@ -126,7 +127,7 @@ uint32_t crypto_box_detached_afternm(uint8_t *c, uint8_t *mac, uint8_t *m, uint6
   return NaCl_crypto_box_detached_afternm(c, mac, m, mlen, n, k);
 }
 
-uint32_t crypto_box_detached(uint8_t *c, uint8_t *mac, uint8_t *m, uint64_t mlen, uint8_t *n, uint8_t *pk, ßuint8_t *sk){
+uint32_t crypto_box_detached(uint8_t *c, uint8_t *mac, uint8_t *m, uint64_t mlen, uint8_t *n, uint8_t *pk, uint8_t *sk){
   return NaCl_crypto_box_detached(c, mac, m, mlen, n, pk, sk);
 }
 
@@ -138,26 +139,27 @@ uint32_t crypto_box_open_detached_afternm(uint8_t *m, uint8_t *c, uint8_t *mac, 
   return NaCl_crypto_box_detached_afternm(m, c, mac, mlen, n, k);
 }
 
-int crypto_box(uint8_t *cipher, uint8_t *msg, uint64_t msg_len, const uint8_t *nonce, uint8_t *pk, uint8_t *sk){
-  return crypto_box_easy(cipher, msg, msg_len - 32, nonce, pk, sk);
+
+int crypto_box(unsigned char *cipher, const unsigned char *message, unsigned long long msg_len, const unsigned char *nonce,  const unsigned char *pk, const unsigned char *sk){
+  return crypto_box_easy(cipher, (unsigned char *)msg, msg_len - 32, (unsigned char *)nonce, (unsigned char *)pk, (unsigned char *)sk);
 }
 
 int crypto_box_open(uint8_t *msg, const uint8_t *cipher, uint64_t cipher_len, const uint8_t *nonce, const uint8_t *pk, const uint8_t *sk){
   return crypto_box_open_easy(msg, cipher, cipher_len - 32, nonce, pk, sk);
 }
 
-int crypto_box_afternm(uint8_t *cipher, uint8_t *msg, uint64_t msg_len, uint8_t *nonce, uint8_t *key){
-  return NaCl_crypto_box_easy_afternm(cipher, msg, msg_len, nonce, key);
+int crypto_box_afternm(unsigned char *cipher, const unsigned char *msg, unsigned long long msg_len, const unsigned char *nonce, const uint8_t *key){
+  return NaCl_crypto_box_easy_afternm(cipher, (unsigned char *)msg, msg_len, (unsigned char *)nonce, (unsigned char *)key);
 }
 
-int crypto_box_open_afternm(uint8_t *msg, uint8_t *cipher, uint64_t cipher_len, uint8_t *nonce, uint8_t *key){
-  return NaCl_crypto_box_open_easy_afternm(msg, cipher, cipher_len, nonce, key);
+int crypto_box_open_afternm(unsigned char *msg, const unsigned char *cipher, unsigned long long cipher_len, const unsigned char *nonce, const unsigned char *key){
+  return NaCl_crypto_box_open_easy_afternm(msg, (unsigned char *)cipher, cipher_len, (unsigned char *)nonce, (unsigned char *)key);
 }
 
 
 int crypto_hash(unsigned char *output, const unsigned char *input,unsigned long long input_len){
   Hacl_SHA2_256_hash(output, (unsigned char *)input, input_len);
-  return 0;  
+  return 0;
 }
 
 int crypto_onetimeauth(unsigned char *output, const unsigned char *input, unsigned long long input_len, const unsigned char *key){
@@ -167,9 +169,9 @@ int crypto_onetimeauth(unsigned char *output, const unsigned char *input, unsign
 
 int crypto_onetimeauth_verify(const unsigned char *auth, const unsigned char *input, unsigned long long input_len, const unsigned char *key){
   uint8_t tag[16], tmp = 0xff;
-  poly1305_onetimeauth(tag, msg, msg_len, key);
+  poly1305_onetimeauth(tag, (unsigned char *)input, input_len, (unsigned char *)key);
   for (int i = 0; i < 16; i++){
-    tmp = tmp & FStar_UInt8_eq_mask(tag[i], auth[i]);
+    tmp = tmp & FStar_UInt8_eq_mask(tag[i], (unsigned char *)auth[i]);
   }
   tmp >>= 7;
   return (int)tmp - 1;
@@ -210,7 +212,7 @@ int crypto_secretbox(unsigned char *cipher, const unsigned char *msg, unsigned l
 }
 
 int crypto_secretbox_open(unsigned char *msg, const unsigned char *cipher, unsigned long long cipher_len, const unsigned char *nonce, const unsigned char *key){
-  return crypto_secretbox_open_detached(msg, (unsigned char *)cipher, cipher + 16, cipher_len - 32, (unsigned char *)nonce, (unsigned char *)key);
+  return crypto_secretbox_open_detached(msg, (unsigned char *)cipher, (unsigned char *)cipher + 16, cipher_len - 32, (unsigned char *)nonce, (unsigned char *)key);
 }
 
 
