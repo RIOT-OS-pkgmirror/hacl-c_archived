@@ -140,7 +140,7 @@ uint32_t crypto_box_open_detached_afternm(uint8_t *m, uint8_t *c, uint8_t *mac, 
 }
 
 
-int crypto_box(unsigned char *cipher, const unsigned char *message, unsigned long long msg_len, const unsigned char *nonce,  const unsigned char *pk, const unsigned char *sk){
+int crypto_box(unsigned char *cipher, const unsigned char *msg, unsigned long long msg_len, const unsigned char *nonce,  const unsigned char *pk, const unsigned char *sk){
   return crypto_box_easy(cipher, (unsigned char *)msg, msg_len - 32, (unsigned char *)nonce, (unsigned char *)pk, (unsigned char *)sk);
 }
 
