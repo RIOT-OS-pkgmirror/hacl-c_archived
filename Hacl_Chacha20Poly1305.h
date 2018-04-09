@@ -30,15 +30,6 @@
 #include "Hacl_Chacha20.h"
 #include "AEAD_Poly1305_64.h"
 
-extern Prims_int Hacl_Chacha20Poly1305_noncelen;
-
-extern Prims_int Hacl_Chacha20Poly1305_keylen;
-
-extern Prims_int Hacl_Chacha20Poly1305_maclen;
-
-typedef Hacl_Impl_Poly1305_64_State_poly1305_state Hacl_Chacha20Poly1305_state;
-
-typedef void *Hacl_Chacha20Poly1305_log_t;
 
 void Hacl_Chacha20Poly1305_encode_length(uint8_t *lb, uint32_t aad_len, uint32_t mlen);
 

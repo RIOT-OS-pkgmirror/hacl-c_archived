@@ -26,7 +26,7 @@
 #define __Hacl_Poly1305_64_H
 
 
-typedef struct 
+typedef struct
 {
   uint64_t *r;
   uint64_t *h;

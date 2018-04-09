@@ -31,21 +31,6 @@
 #include "Hacl_Poly1305_64.h"
 #include "Hacl_Policies.h"
 
-
-extern Prims_int NaCl_crypto_box_NONCEBYTES;
-
-extern Prims_int NaCl_crypto_box_PUBLICKEYBYTES;
-
-extern Prims_int NaCl_crypto_box_SECRETKEYBYTES;
-
-extern Prims_int NaCl_crypto_box_MACBYTES;
-
-extern Prims_int NaCl_crypto_secretbox_NONCEBYTES;
-
-extern Prims_int NaCl_crypto_secretbox_KEYBYTES;
-
-extern Prims_int NaCl_crypto_secretbox_MACBYTES;
-
 uint32_t
 NaCl_crypto_secretbox_detached(
   uint8_t *c,

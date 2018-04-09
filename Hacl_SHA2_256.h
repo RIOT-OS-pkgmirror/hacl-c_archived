@@ -25,66 +25,6 @@
 #ifndef __Hacl_SHA2_256_H
 #define __Hacl_SHA2_256_H
 
-
-
-
-
-typedef uint8_t Hacl_Hash_Lib_Create_uint8_t;
-
-typedef uint32_t Hacl_Hash_Lib_Create_uint32_t;
-
-typedef uint64_t Hacl_Hash_Lib_Create_uint64_t;
-
-typedef uint8_t Hacl_Hash_Lib_Create_uint8_ht;
-
-typedef uint32_t Hacl_Hash_Lib_Create_uint32_ht;
-
-typedef uint64_t Hacl_Hash_Lib_Create_uint64_ht;
-
-typedef uint8_t *Hacl_Hash_Lib_Create_uint8_p;
-
-typedef uint32_t *Hacl_Hash_Lib_Create_uint32_p;
-
-typedef uint64_t *Hacl_Hash_Lib_Create_uint64_p;
-
-typedef uint8_t *Hacl_Hash_Lib_LoadStore_uint8_p;
-
-typedef uint8_t Hacl_Impl_SHA2_256_uint8_t;
-
-typedef uint32_t Hacl_Impl_SHA2_256_uint32_t;
-
-typedef uint64_t Hacl_Impl_SHA2_256_uint64_t;
-
-typedef uint8_t Hacl_Impl_SHA2_256_uint8_ht;
-
-typedef uint32_t Hacl_Impl_SHA2_256_uint32_ht;
-
-typedef uint64_t Hacl_Impl_SHA2_256_uint64_ht;
-
-typedef uint32_t *Hacl_Impl_SHA2_256_uint32_p;
-
-typedef uint8_t *Hacl_Impl_SHA2_256_uint8_p;
-
-typedef uint8_t Hacl_SHA2_256_uint8_t;
-
-typedef uint32_t Hacl_SHA2_256_uint32_t;
-
-typedef uint64_t Hacl_SHA2_256_uint64_t;
-
-typedef uint8_t Hacl_SHA2_256_uint8_ht;
-
-typedef uint32_t Hacl_SHA2_256_uint32_ht;
-
-typedef uint32_t *Hacl_SHA2_256_uint32_p;
-
-typedef uint8_t *Hacl_SHA2_256_uint8_p;
-
-extern uint32_t Hacl_SHA2_256_size_hash;
-
-extern uint32_t Hacl_SHA2_256_size_block;
-
-extern uint32_t Hacl_SHA2_256_size_state;
-
 void Hacl_SHA2_256_init(uint32_t *state);
 
 void Hacl_SHA2_256_update(uint32_t *state, uint8_t *data_8);
