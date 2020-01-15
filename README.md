@@ -1,15 +1,8 @@
-# HACL-C
-HACL* verified C code (READ-ONLY)
+A new version of HACL* can be found here:
+https://github.com/project-everest/hacl-star
 
-Please read more information at https://github.com/mitls/hacl-star.
+The release C and assembly code can be found in
+the Release section on Github or in the following directory:
+https://github.com/project-everest/hacl-star/tree/master/dist
 
-Beware of the trusted code base `kermlib.{h,c}`, `gcc-compat.h` and `testlib.{h,c}`
-
-```
-Beware: HACLv2 (~Q1 2019) WILL BE A NON-TRIVIAL UPGRADE OF THIS CONTENT AND STRUCTURE
-```
-
-Pull Requests or Issues should be opened in the correct main repository.
-https://github.com/mitls/hacl-star (for the verified code)
-or
-https://github.com/FStarLang/kremlin (for most of the TCB)
+This repository will be deleted Q2 2020.
